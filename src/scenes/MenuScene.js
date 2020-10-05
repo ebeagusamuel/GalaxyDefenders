@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import game from '../index'
+import game from '../index';
 
 class MenuScene extends Phaser.Scene {
   constructor(){
@@ -15,7 +15,7 @@ class MenuScene extends Phaser.Scene {
   }
 
   create(){
-    this.title = this.add.text(
+    let title = this.add.text(
       this.game.config.width * 0.5,
       100,
       "Galaxy Defenders",
@@ -27,7 +27,48 @@ class MenuScene extends Phaser.Scene {
         align: "center",
       }
     );
-    this.title.setOrigin(0.5);
+    title.setOrigin(0.5);
+      
+    let printText = this.add
+      .text(240, 200, "PlayerName:", {
+        fontSize: "15px",
+        fixedWidth: 100,
+        fixedHeight: 100,
+      })
+      .setOrigin(0.5);
+
+    let inputText = this.add
+    .rexInputText(240, 200, 200, 30, {
+      type: "text",
+      placeholder: "Enter player name",
+      fontSize: 20,
+      color: "#ffffff",
+      borderBottom: `3px solid #fed141`,
+    })
+    .setOrigin(0.5)
+    .on("textchange", () => {
+      printText.text = inputText.text;
+    });
+
+    printText.text = inputText.text
+
+    let submitButton = this.add.text(200, 230, "Submit", {
+      fontFamily: "monospace",
+      fontSize: 18,
+      fontStyle: "bold",
+      color: "#000000",
+      backgroundColor: "#fed141",
+      padding: 5,
+    })
+
+    submitButton.setInteractive();
+
+    submitButton.on("pointerup", function(){
+      if (printText.text.length > 0) {
+        inputText.text = '';
+        window.global.name = printText.text
+      }
+    })
   }
 }
 
