@@ -23,12 +23,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, 'index.html'),
-        to: path.resolve(__dirname, 'dist')
-      }
-    ]),
     new webpack.DefinePlugin({
       'typeof CANVAS_RENDERER': JSON.stringify(true),
       'typeof WEBGL_RENDERER': JSON.stringify(true)

@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import MenuScene from './scenes/MenuScene'
 
 const config = {
   type: Phaser.AUTO,
@@ -11,9 +12,17 @@ const config = {
       gravity: { x: 0, y: 0 }
     }
   },
-  scene: [],
+  parent: "divId",
+  dom: {
+    createContainer: true,
+  },
+  scene: [MenuScene],
   pixelArt: true,
   roundPixels: true
+}
+
+window.global = {
+  name: ''
 }
 
 const game = new Phaser.Game(config)
