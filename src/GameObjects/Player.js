@@ -1,4 +1,5 @@
 import Entity from './Entities'
+import PlayerLaser from './PlayerLaser'
 
 class Player extends Entity {
   constructor(scene, x, y, key){
@@ -32,6 +33,18 @@ class Player extends Entity {
 
     this.x = Phaser.Math.Clamp(this.x, 0, this.scene.game.config.width);
     this.y = Phaser.Math.Clamp(this.y, 0, this.scene.game.config.height);
+
+    if (this.getData("isShooting")) {
+      if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
+        this.setData("timerShootTick", this.getData("timerShootTick") + 1); 
+      }
+      else { 
+        var laser = new PlayerLaser(this.scene, this.x, this.y);
+        this.scene.playerLasers.add(laser);
+      
+        this.setData("timerShootTick", 0);
+      }
+    }
 
   }
 }
