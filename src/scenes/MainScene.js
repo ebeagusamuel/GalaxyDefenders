@@ -12,6 +12,7 @@ class MainScene extends Phaser.Scene{
     this.load.image('enemyShip1', '../assets/sprites/enemyShip1.png')
     this.load.image('enemyShip2', '../assets/sprites/enemyShip2.png')
     this.load.image('enemyShip3', '../assets/sprites/enemyShip3.png')
+    this.load.image('enemyLaser', '../assets/sprites/enemyLaser.png')
   }
 
   create(){
@@ -29,6 +30,8 @@ class MainScene extends Phaser.Scene{
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     this.enemies = this.add.group();
+    this.enemyLasers = this.add.group();
+    this.playerLasers = this.add.group();
 
     this.time.addEvent({
       delay: 1000,
