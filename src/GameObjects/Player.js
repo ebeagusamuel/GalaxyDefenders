@@ -47,6 +47,18 @@ class Player extends Entity {
     }
 
   }
+
+  onDestroy(){
+    this.scene.time.addEvent({ 
+      delay: 1000,
+      callback: () => {
+        // this.scene.scene.start("SceneGameOver");
+        window.location.reload()
+      },
+      callbackScope: this,
+      loop: false
+    });
+  }
 }
 
 export default Player

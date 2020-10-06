@@ -16,9 +16,20 @@ class MainScene extends Phaser.Scene{
     this.load.image('enemyShip3', '../assets/sprites/enemyShip3.png')
     this.load.image('enemyLaser', '../assets/sprites/enemyLaser.png')
     this.load.image('playerLaser', '../assets/sprites/playerLaser.png')
+    this.load.spritesheet("explosion", "../assets/sprites/sprExplosion.png", {
+      frameWidth: 32,
+      frameHeight: 32,
+    });
   }
 
   create(){
+    this.anims.create({
+      key: "explosion",
+      frames: this.anims.generateFrameNumbers("explosion"),
+      frameRate: 20,
+      repeat: 0
+    });
+
     this.player = new Player(
       this,
       this.game.config.width * 0.5,
@@ -74,31 +85,60 @@ class MainScene extends Phaser.Scene{
       callbackScope: this,
       loop: true
     });
+
+    this.physics.add.collider(this.playerLasers, this.enemies, (playerLaser, enemy) => {
+      if (enemy) {
+        if (enemy.onDestroy !== undefined) {
+          enemy.onDestroy();
+        }
+      
+        enemy.explode(true);
+        playerLaser.destroy();
+      }      
+    });
+
+    this.physics.add.overlap(this.player, this.enemies, (player, enemy) => {
+      if (!player.getData("isDead") &&
+          !enemy.getData("isDead")) {
+        player.explode(false);
+        player.onDestroy()
+        enemy.explode(true);
+      }
+    });
+
+    this.physics.add.overlap(this.player, this.enemyLasers, (player, laser) => {
+      if (!player.getData("isDead") &&
+          !laser.getData("isDead")) {
+        player.explode(false);
+        player.onDestroy()
+        laser.destroy();
+      }
+    });
   }
 
   update(){
-    this.player.update();
-
-    if (this.keyW.isDown) {
-      this.player.moveUp();
-    }
-    else if (this.keyS.isDown) {
-      this.player.moveDown();
-    }
-
-    if (this.keyA.isDown) {
-      this.player.moveLeft();
-    }
-    else if (this.keyD.isDown) {
-      this.player.moveRight();
-    }
-
-    if (this.keySpace.isDown) {
-      this.player.setData("isShooting", true);
-    }
-    else {
-      this.player.setData("timerShootTick", this.player.getData("timerShootDelay") - 1);
-      this.player.setData("isShooting", false);
+    if (!this.player.getData("isDead")) {
+      this.player.update();
+      if (this.keyW.isDown) {
+        this.player.moveUp();
+      }
+      else if (this.keyS.isDown) {
+        this.player.moveDown();
+      }
+      if (this.keyA.isDown) {
+        this.player.moveLeft();
+      }
+      else if (this.keyD.isDown) {
+        this.player.moveRight();
+      }
+    
+      if (this.keySpace.isDown) {
+        this.player.setData("isShooting", true);
+      }
+      else {
+        this.player.setData("timerShootTick", this.player.getData("timerShootDelay") - 1);
+        this.player.setData("isShooting", false);
+      }
     }
 
     for (var i = 0; i < this.enemies.getChildren().length; i++) {
@@ -148,8 +188,6 @@ class MainScene extends Phaser.Scene{
         }
       }
     }
-
-    }
   }
 
   getEnemiesByType(type) {
@@ -161,7 +199,7 @@ class MainScene extends Phaser.Scene{
       }
     }
     return arr;
-  }
+  };
 }
 
 export default MainScene
