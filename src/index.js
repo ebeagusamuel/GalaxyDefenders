@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import MenuScene from './scenes/MenuScene'
+import Controls from './scenes/Controls'
 
 const config = {
   type: Phaser.AUTO,
@@ -16,7 +17,7 @@ const config = {
   dom: {
     createContainer: true,
   },
-  scene: [MenuScene],
+  scene: [MenuScene, Controls],
   pixelArt: true,
   roundPixels: true
 }

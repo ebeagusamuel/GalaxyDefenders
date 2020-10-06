@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import game from '../index';
 
 class MenuScene extends Phaser.Scene {
   constructor(){
@@ -12,10 +11,11 @@ class MenuScene extends Phaser.Scene {
       "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexinputtextplugin.min.js",
       true
     );
+    this.load.audio('sndBtnOver', 'assets/audio/sndBtnOver.wav')
   }
 
   create(){
-    let title = this.add.text(
+    this.title = this.add.text(
       this.game.config.width * 0.5,
       100,
       "Galaxy Defenders",
@@ -27,9 +27,9 @@ class MenuScene extends Phaser.Scene {
         align: "center",
       }
     );
-    title.setOrigin(0.5);
+    this.title.setOrigin(0.5);
       
-    let printText = this.add
+    this.printText = this.add
       .text(240, 200, "PlayerName:", {
         fontSize: "15px",
         fixedWidth: 100,
@@ -37,7 +37,7 @@ class MenuScene extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    let inputText = this.add
+    this.inputText = this.add
     .rexInputText(240, 200, 200, 30, {
       type: "text",
       placeholder: "Enter player name",
@@ -47,12 +47,12 @@ class MenuScene extends Phaser.Scene {
     })
     .setOrigin(0.5)
     .on("textchange", () => {
-      printText.text = inputText.text;
+      this.printText.text = this.inputText.text;
     });
 
-    printText.text = inputText.text
+    this.printText.text = this.inputText.text
 
-    let submitButton = this.add.text(200, 230, "Submit", {
+    this.submitButton = this.add.text(200, 230, "Submit", {
       fontFamily: "monospace",
       fontSize: 18,
       fontStyle: "bold",
@@ -60,15 +60,45 @@ class MenuScene extends Phaser.Scene {
       backgroundColor: "#fed141",
       padding: 5,
     })
-
-    submitButton.setInteractive();
-
-    submitButton.on("pointerup", function(){
+    this.submitButton.setInteractive();
+    this.submitButton.on("pointerup", () => {
       if (printText.text.length > 0) {
         inputText.text = '';
         window.global.name = printText.text
       }
     })
+
+    this.playButton = this.add.text(210, 280, "Play", {
+      fontFamily: "monospace",
+      fontSize: 18,
+      fontStyle: "bold",
+      color: "#000000",
+      backgroundColor: "#fed141",
+      padding: 5,
+    });
+    this.playButton.setInteractive();
+
+    this.controlBtn = this.add.text(
+      190,
+      330,
+      "Controls",
+      {
+        fontFamily: "monospace",
+        fontSize: 18,
+        fontStyle: "bold",
+        color: "#000000",
+        backgroundColor: "#fed141",
+        padding: 5,
+      }
+    );
+    this.controlBtn.setInteractive();
+    this.controlBtn.on(
+      "pointerup",
+      () => {
+        this.scene.switch("Controls");
+      },
+      this
+    );
   }
 }
 
