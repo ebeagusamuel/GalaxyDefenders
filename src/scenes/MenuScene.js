@@ -29,7 +29,7 @@ class MenuScene extends Phaser.Scene {
     );
     this.title.setOrigin(0.5);
       
-    this.printText = this.add
+    let printText = this.add
       .text(240, 200, "PlayerName:", {
         fontSize: "15px",
         fixedWidth: 100,
@@ -37,7 +37,7 @@ class MenuScene extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    this.inputText = this.add
+    let inputText = this.add
     .rexInputText(240, 200, 200, 30, {
       type: "text",
       placeholder: "Enter player name",
@@ -47,10 +47,10 @@ class MenuScene extends Phaser.Scene {
     })
     .setOrigin(0.5)
     .on("textchange", () => {
-      this.printText.text = this.inputText.text;
+      printText.text = inputText.text;
     });
 
-    this.printText.text = this.inputText.text
+    printText.text = inputText.text
 
     this.submitButton = this.add.text(200, 230, "Submit", {
       fontFamily: "monospace",
@@ -99,6 +99,14 @@ class MenuScene extends Phaser.Scene {
       },
       this
     );
+
+    this.add.text(100, this.game.config.height -  30, "Made By Samuel Ebeagu",{
+      fontFamily: "monospace",
+      fontSize: 20,
+      fontStyle: "bold",
+      color: "#fed141",
+      align: "center",
+    } )
   }
 }
 
