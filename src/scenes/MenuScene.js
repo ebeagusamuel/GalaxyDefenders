@@ -11,7 +11,6 @@ class MenuScene extends Phaser.Scene {
       "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexinputtextplugin.min.js",
       true
     );
-    this.load.audio('sndBtnOver', 'assets/audio/sndBtnOver.wav')
   }
 
   create(){
