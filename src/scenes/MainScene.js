@@ -1,5 +1,6 @@
 import Phaser from "phaser"
 import Player from "../GameObjects/Player"
+import GunShip from "../GameObjects/GunShip";
 
 class MainScene extends Phaser.Scene{
   constructor(){
@@ -8,6 +9,9 @@ class MainScene extends Phaser.Scene{
 
   preload(){
     this.load.image('playerShip', '../assets/sprites/playerShip.png')
+    this.load.image('enemyShip1', '../assets/sprites/enemyShip1.png')
+    this.load.image('enemyShip2', '../assets/sprites/enemyShip2.png')
+    this.load.image('enemyShip3', '../assets/sprites/enemyShip3.png')
   }
 
   create(){
@@ -23,6 +27,22 @@ class MainScene extends Phaser.Scene{
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    this.enemies = this.add.group();
+
+    this.time.addEvent({
+      delay: 1000,
+      callback: function() {
+        var enemy = new GunShip(
+          this,
+          Phaser.Math.Between(0, this.game.config.width),
+          0
+        );
+        this.enemies.add(enemy);
+      },
+      callbackScope: this,
+      loop: true
+    });
   }
 
   update(){

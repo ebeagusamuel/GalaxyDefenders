@@ -5,7 +5,6 @@ class Player extends Entity {
     super(scene, x, y, key, "Player");
 
     this.setData("speed", 200);
-    this.play("playerShip");
 
     this.setData("isShooting", false);
     this.setData("timerShootDelay", 10);
