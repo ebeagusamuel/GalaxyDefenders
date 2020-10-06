@@ -76,6 +76,9 @@ class MenuScene extends Phaser.Scene {
       padding: 5,
     });
     this.playButton.setInteractive();
+    this.playButton.on("pointerup", () => {
+      this.scene.switch("MainScene")
+    }, this)
 
     this.controlBtn = this.add.text(
       190,
@@ -107,6 +110,7 @@ class MenuScene extends Phaser.Scene {
       align: "center",
     } )
   }
+  
 }
 
 export default MenuScene
