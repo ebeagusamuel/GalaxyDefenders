@@ -48,10 +48,7 @@ class MainScene extends Phaser.Scene{
       "playerShip"
     );
 
-    this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    this.cusors = this.input.keyboard.createCursorKeys();
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     this.enemies = this.add.group();
@@ -138,16 +135,16 @@ class MainScene extends Phaser.Scene{
   update(){
     if (!this.player.getData("isDead")) {
       this.player.update();
-      if (this.keyW.isDown) {
+      if (this.cusors.up.isDown) {
         this.player.moveUp();
       }
-      else if (this.keyS.isDown) {
+      else if (this.cusors.down.isDown) {
         this.player.moveDown();
       }
-      if (this.keyA.isDown) {
+      if (this.cusors.left.isDown) {
         this.player.moveLeft();
       }
-      else if (this.keyD.isDown) {
+      else if (this.cusors.right.isDown) {
         this.player.moveRight();
       }
     
