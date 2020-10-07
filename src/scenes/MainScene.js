@@ -30,6 +30,15 @@ class MainScene extends Phaser.Scene{
       repeat: 0
     });
 
+    let score = this.add.text(10, 20, "Score:", {
+      fontFamily: "monospace",
+      fontSize: 18,
+      fontStyle: "bold",
+      color: "#000000",
+      backgroundColor: "#fed141",
+      padding: 5,
+    })
+
     this.player = new Player(
       this,
       this.game.config.width * 0.5,
@@ -94,6 +103,8 @@ class MainScene extends Phaser.Scene{
       
         enemy.explode(true);
         playerLaser.destroy();
+        window.global.score += 1
+        score.setText(`Score: ${window.global.score}`)
       }      
     });
 
