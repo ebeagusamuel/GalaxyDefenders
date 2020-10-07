@@ -3,6 +3,7 @@ import Player from "../GameObjects/Player"
 import GunShip from "../GameObjects/GunShip";
 // import CarrierShip from '../GameObjects/CarrierShip'
 import ChaserShip from '../GameObjects/ChaserShip'
+import ScrollingBackground from '../GameObjects/ScrollingBackground'
 
 class MainScene extends Phaser.Scene{
   constructor(){
@@ -10,6 +11,7 @@ class MainScene extends Phaser.Scene{
   }
 
   preload(){
+    this.load.image("bg1", "../assets/sprites/bg1.png")
     this.load.image('playerShip', '../assets/sprites/playerShip.png')
     this.load.image('enemyShip1', '../assets/sprites/enemyShip1.png')
     this.load.image('enemyShip2', '../assets/sprites/enemyShip2.png')
@@ -125,6 +127,12 @@ class MainScene extends Phaser.Scene{
         laser.destroy();
       }
     });
+
+    this.backgrounds = [];
+    for (var i = 0; i < 5; i++) {
+      var bg = new ScrollingBackground(this, "bg1", i * 10);
+      this.backgrounds.push(bg);
+    }
   }
 
   update(){
@@ -198,6 +206,10 @@ class MainScene extends Phaser.Scene{
           laser.destroy();
         }
       }
+    }
+
+    for (var i = 0; i < this.backgrounds.length; i++) {
+      this.backgrounds[i].update();
     }
   }
 
