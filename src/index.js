@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import MenuScene from './scenes/MenuScene'
 import Controls from './scenes/Controls'
 import MainScene from './scenes/MainScene'
+// import getApiKey from './LeaderBoard'
 
 const config = {
   type: Phaser.AUTO,
@@ -27,6 +28,7 @@ window.global = {
   name: '',
   score: 0
 }
+
 
 const game = new Phaser.Game(config)
 

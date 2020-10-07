@@ -11,8 +11,8 @@ class Controls extends Phaser.Scene {
       color: '#fed141',
       align: 'center'
     })
-    this.add.text(130, this.game.config.height * 0.5,
-      `Move-Left: A\n\nMove-Right: D\n\nMove-Up: W\n\nMove-Down: S\n\nShoot: [Space]`,{
+    this.add.text(40, this.game.config.height * 0.5,
+      `Move-Left: Left-cusor-key(←)\n\nMove-Right: Right-cusor-key(→)\n\nMove-Up: Up-cusor-key(↑)\n\nMove-Down: Down-cusor-key(↓)\n\nShoot: [Space]`,{
         fontFamily: 'monospace',
         fontSize: 20,
         fontStyle: 'bold',

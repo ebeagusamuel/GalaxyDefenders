@@ -22,6 +22,10 @@ class MainScene extends Phaser.Scene{
       frameWidth: 32,
       frameHeight: 32,
     });
+
+    this.load.audio("sndExplode0", "../assets/audio/sndExplode0.wav");
+    this.load.audio("sndExplode1", "../assets/audio/sndExplode1.wav"); 
+    this.load.audio("sndLaser", "../assets/audio/sndLaser.wav");
   }
 
   create(){
@@ -31,6 +35,14 @@ class MainScene extends Phaser.Scene{
       frameRate: 20,
       repeat: 0
     });
+
+    this.sfx = {
+      explosions: [
+        this.sound.add("sndExplode0"),
+        this.sound.add("sndExplode1")
+      ],
+      laser: this.sound.add("sndLaser")
+    };
 
     let score = this.add.text(10, 20, "Score:", {
       fontFamily: "monospace",
