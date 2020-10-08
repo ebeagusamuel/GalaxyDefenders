@@ -2,7 +2,8 @@ import Phaser from 'phaser'
 import MenuScene from './scenes/MenuScene'
 import Controls from './scenes/Controls'
 import MainScene from './scenes/MainScene'
-import API from './LeaderBoard'
+import GameOverScene from './scenes/GameOverScene'
+// import API from './LeaderBoard'
 
 const config = {
   type: Phaser.AUTO,
@@ -19,7 +20,7 @@ const config = {
   dom: {
     createContainer: true,
   },
-  scene: [MenuScene, Controls, MainScene],
+  scene: [MenuScene, Controls, MainScene, GameOverScene],
   pixelArt: true,
   roundPixels: true
 }
