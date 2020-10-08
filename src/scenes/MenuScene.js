@@ -6,6 +6,7 @@ class MenuScene extends Phaser.Scene {
   }
 
   preload(){
+    this.load.audio('bgsnd', "../assets/audio/ancientbgm.mp3")
     this.load.plugin(
       "rexinputtextplugin",
       "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexinputtextplugin.min.js",
@@ -14,6 +15,11 @@ class MenuScene extends Phaser.Scene {
   }
 
   create(){
+    this.sound.add('bgsnd', {
+      loop: true,
+      volume: 0.5
+    }).play()
+
     this.title = this.add.text(
       this.game.config.width * 0.5,
       100,

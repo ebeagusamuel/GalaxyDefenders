@@ -1,7 +1,6 @@
 import Phaser from "phaser"
 import Player from "../GameObjects/Player"
 import GunShip from "../GameObjects/GunShip";
-// import CarrierShip from '../GameObjects/CarrierShip'
 import ChaserShip from '../GameObjects/ChaserShip'
 import ScrollingBackground from '../GameObjects/ScrollingBackground'
 
@@ -38,10 +37,10 @@ class MainScene extends Phaser.Scene{
 
     this.sfx = {
       explosions: [
-        this.sound.add("sndExplode0"),
-        this.sound.add("sndExplode1")
+        this.sound.add("sndExplode0", {volume: 0.5}),
+        this.sound.add("sndExplode1", {volume: 0.5})
       ],
-      laser: this.sound.add("sndLaser")
+      laser: this.sound.add("sndLaser", {volume: 0.5})
     };
 
     let score = this.add.text(10, 20, "Score:", {
@@ -68,7 +67,7 @@ class MainScene extends Phaser.Scene{
     this.playerLasers = this.add.group();
 
     this.time.addEvent({
-      delay: 1000,
+      delay: 700,
       callback: () => {
         var enemy = null;
 
@@ -89,14 +88,7 @@ class MainScene extends Phaser.Scene{
             );
           }
         }
-        // else {
-        //   enemy = new CarrierShip(
-        //     this,
-        //     Phaser.Math.Between(0, this.game.config.width),
-        //     0
-        //   );
-        // }
-    
+        
         if (enemy !== null) {
           enemy.setScale(Phaser.Math.Between(10, 20) * 0.1);
           this.enemies.add(enemy);
