@@ -1,4 +1,4 @@
-const API = () => {
+const API = (() => {
   const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/'
   const gameId = '56zALG4xwXumPvOu4eKI';
 
@@ -6,7 +6,7 @@ const API = () => {
     let data = window.global
 
     try {
-      await fetch(`${baseURL}${gameId}/scores`, {
+      let response = await fetch(`${baseURL}${gameId}/scores`, {
         method: 'POST',
         mode: "cors",
         headers: {
@@ -14,6 +14,10 @@ const API = () => {
         },
         body: JSON.stringify(data)
       })
+      let jsonObj = await response.json()
+
+      return jsonObj
+
     } catch (error) {
       console.error(error)
     }
@@ -31,14 +35,15 @@ const API = () => {
     }
   }
 
-  const topScores = () => {
-    let scores = getScores().result;
-    scores.sort((a, b) => a.score - b.score);
+  const topScores = async() => {
+    let scoreObj = await getScores();
+    let scores = scoreObj.result
+    scores.sort((a, b) => b.score - a.score);
 
     return scores;
   }
 
   return {postScore, topScores}
-}
+})()
 
 export default API

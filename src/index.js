@@ -26,8 +26,8 @@ const config = {
 }
 
 window.global = {
-  name: '',
-  score: 0
+  "user": '',
+  "score": 0
 }
 
 const game = new Phaser.Game(config)

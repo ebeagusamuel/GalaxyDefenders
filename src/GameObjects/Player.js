@@ -1,5 +1,6 @@
 import Entity from './Entities'
 import PlayerLaser from './PlayerLaser'
+import API from '../LeaderBoard'
 
 class Player extends Entity {
   constructor(scene, x, y, key){
@@ -53,8 +54,10 @@ class Player extends Entity {
     this.scene.time.addEvent({ 
       delay: 1000,
       callback: () => {
+        if(window.global.name && window.global.score > 0){
+          API.postScore()
+        }
         this.scene.scene.start("GameOverScene");
-        // window.location.reload()
       },
       callbackScope: this,
       loop: false

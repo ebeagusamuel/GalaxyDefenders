@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import API from '../LeaderBoard'
 
 class GameOverScene extends Phaser.Scene {
   constructor(){
@@ -45,15 +46,25 @@ class GameOverScene extends Phaser.Scene {
       align: "center",
     })
 
-    for(let i = 0; i < 10; i += 1){
-      this.add.text(80, 170 + (i * 20), "Seyitope                  100", {
-        fontFamily: "monospace",
-        fontSize: 16,
-        fontStyle: "bold",
-        color: "#ffffff",
-        align: "center",
-      })
-    }
+    API.topScores().then(playersScores => {
+      let count = playersScores.length <= 10 ? playersScores.length : 10;
+      for(let i = 0; i < count; i += 1){
+        this.add.text(80, 170 + (i * 20), `${playersScores[i].user}`, {
+          fontFamily: "monospace",
+          fontSize: 16,
+          fontStyle: "bold",
+          color: "#ffffff",
+          align: "center",
+        })
+        this.add.text(320, 170 + (i * 20), `${playersScores[i].score}`, {
+          fontFamily: "monospace",
+          fontSize: 16,
+          fontStyle: "bold",
+          color: "#ffffff",
+          align: "center",
+        })
+      }
+    })
 
     this.restartButton = this.add.text(180, 400, "Restart", {
       fontFamily: "monospace",

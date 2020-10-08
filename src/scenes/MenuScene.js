@@ -63,7 +63,7 @@ class MenuScene extends Phaser.Scene {
     this.submitButton.on("pointerup", () => {
       if (printText.text.length > 0) {
         inputText.text = '';
-        window.global.name = printText.text
+        window.global.user = printText.text
       }
     })
 
