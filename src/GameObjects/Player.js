@@ -1,9 +1,10 @@
-import Entity from './Entities'
-import PlayerLaser from './PlayerLaser'
-import API from '../LeaderBoard'
+import Phaser from "phaser";
+import Entity from "./Entities";
+import PlayerLaser from "./PlayerLaser";
+import API from "../LeaderBoard";
 
 class Player extends Entity {
-  constructor(scene, x, y, key){
+  constructor(scene, x, y, key) {
     super(scene, x, y, key, "Player");
 
     this.setData("speed", 200);
@@ -13,23 +14,23 @@ class Player extends Entity {
     this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
   }
 
-  moveUp(){
+  moveUp() {
     this.body.velocity.y = -this.getData("speed");
   }
 
-  moveDown(){
+  moveDown() {
     this.body.velocity.y = this.getData("speed");
   }
 
-  moveLeft(){
+  moveLeft() {
     this.body.velocity.x = -this.getData("speed");
   }
 
-  moveRight(){
+  moveRight() {
     this.body.velocity.x = this.getData("speed");
   }
 
-  update(){
+  update() {
     this.body.setVelocity(0, 0);
 
     this.x = Phaser.Math.Clamp(this.x, 0, this.scene.game.config.width);
@@ -37,32 +38,30 @@ class Player extends Entity {
 
     if (this.getData("isShooting")) {
       if (this.getData("timerShootTick") < this.getData("timerShootDelay")) {
-        this.setData("timerShootTick", this.getData("timerShootTick") + 1); 
-      }
-      else { 
-        var laser = new PlayerLaser(this.scene, this.x, this.y);
+        this.setData("timerShootTick", this.getData("timerShootTick") + 1);
+      } else {
+        const laser = new PlayerLaser(this.scene, this.x, this.y);
         this.scene.playerLasers.add(laser);
-      
+
         this.scene.sfx.laser.play();
         this.setData("timerShootTick", 0);
       }
     }
-
   }
 
-  onDestroy(){
-    this.scene.time.addEvent({ 
+  onDestroy() {
+    this.scene.time.addEvent({
       delay: 1000,
       callback: () => {
-        if(window.global.name != '' && window.global.score > 0){
-          API.postScore()
+        if (window.global.name !== "" && window.global.score > 0) {
+          API.postScore();
         }
         this.scene.scene.start("GameOverScene");
       },
       callbackScope: this,
-      loop: false
+      loop: false,
     });
   }
 }
 
-export default Player
+export default Player;

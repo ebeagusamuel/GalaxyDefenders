@@ -1,4 +1,4 @@
-import Entity from './Entities'
+import Entity from "./Entities";
 
 class PlayerLaser extends Entity {
   constructor(scene, x, y) {
@@ -7,4 +7,4 @@ class PlayerLaser extends Entity {
   }
 }
 
-export default PlayerLaser
+export default PlayerLaser;

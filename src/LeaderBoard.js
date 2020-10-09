@@ -1,51 +1,52 @@
-import 'regenerator-runtime';
+import "regenerator-runtime";
 
 const API = (() => {
-  const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/'
-  const gameId = '56zALG4xwXumPvOu4eKI';
+  const baseURL =
+    "https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/";
+  const gameId = "56zALG4xwXumPvOu4eKI";
 
-  const postScore = async() => {
-    let data = window.global
+  const postScore = async () => {
+    const data = window.global;
 
     try {
-      let response = await fetch(`${baseURL}${gameId}/scores`, {
-        method: 'POST',
+      const response = await fetch(`${baseURL}${gameId}/scores`, {
+        method: "POST",
         mode: "cors",
         headers: {
-          'Content-type': 'application/json; charset=UTF-8'
+          "Content-type": "application/json; charset=UTF-8",
         },
-        body: JSON.stringify(data)
-      })
-      let jsonObj = await response.json()
+        body: JSON.stringify(data),
+      });
+      const jsonObj = await response.json();
 
-      return jsonObj
-
+      return jsonObj;
     } catch (error) {
-      return null
+      return null;
     }
-  }
+  };
 
-  const getScores = async() => {
+  const getScores = async () => {
     try {
-      let response = await fetch(`${baseURL}${gameId}/scores`, {mode: 'cors'});
-      let jsonObj = await response.json();
+      const response = await fetch(`${baseURL}${gameId}/scores`, {
+        mode: "cors",
+      });
+      const jsonObj = await response.json();
 
-      return jsonObj
-
+      return jsonObj;
     } catch (error) {
-      return null
+      return null;
     }
-  }
+  };
 
-  const topScores = async() => {
-    let scoreObj = await getScores();
-    let scores = scoreObj.result
+  const topScores = async () => {
+    const scoreObj = await getScores();
+    const scores = scoreObj.result;
     scores.sort((a, b) => b.score - a.score);
-    console.log(scores)
+
     return scores;
-  }
+  };
 
-  return {postScore, getScores, topScores}
-})()
+  return { postScore, getScores, topScores };
+})();
 
-export default API
+export default API;

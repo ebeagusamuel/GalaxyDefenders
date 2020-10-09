@@ -1,9 +1,8 @@
-import Phaser from 'phaser'
-import MenuScene from './scenes/MenuScene'
-import Controls from './scenes/Controls'
-import MainScene from './scenes/MainScene'
-import GameOverScene from './scenes/GameOverScene'
-// import API from './LeaderBoard'
+import Phaser from "phaser";
+import MenuScene from "./scenes/MenuScene";
+import Controls from "./scenes/Controls";
+import MainScene from "./scenes/MainScene";
+import GameOverScene from "./scenes/GameOverScene";
 
 const config = {
   type: Phaser.AUTO,
@@ -13,8 +12,8 @@ const config = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { x: 0, y: 0 }
-    }
+      gravity: { x: 0, y: 0 },
+    },
   },
   parent: "divId",
   dom: {
@@ -22,14 +21,16 @@ const config = {
   },
   scene: [MenuScene, Controls, MainScene, GameOverScene],
   pixelArt: true,
-  roundPixels: true
-}
+  roundPixels: true,
+};
 
 window.global = {
-  "user": '',
-  "score": 0
-}
+  user: "",
+  score: 0,
+};
 
-const game = new Phaser.Game(config)
+/* eslint-disable no-unused-vars */
 
+const game = new Phaser.Game(config);
 
+/* eslint-enable no-unused-vars */
