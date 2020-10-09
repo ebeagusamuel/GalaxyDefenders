@@ -1,8 +1,8 @@
-import Entity from "./Entities";
+import Entity from './Entities';
 
 class PlayerLaser extends Entity {
   constructor(scene, x, y) {
-    super(scene, x, y, "playerLaser");
+    super(scene, x, y, 'playerLaser');
     this.body.velocity.y = -200;
   }
 }

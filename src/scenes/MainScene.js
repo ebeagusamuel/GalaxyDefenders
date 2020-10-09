@@ -1,54 +1,54 @@
-import Phaser from "phaser";
-import Player from "../GameObjects/Player";
-import GunShip from "../GameObjects/GunShip";
-import ChaserShip from "../GameObjects/ChaserShip";
-import ScrollingBackground from "../GameObjects/ScrollingBackground";
+import Phaser from 'phaser';
+import Player from '../GameObjects/Player';
+import GunShip from '../GameObjects/GunShip';
+import ChaserShip from '../GameObjects/ChaserShip';
+import ScrollingBackground from '../GameObjects/ScrollingBackground';
 
 class MainScene extends Phaser.Scene {
   constructor() {
-    super("MainScene");
+    super('MainScene');
   }
 
   preload() {
-    this.load.image("bg1", "../assets/sprites/bg1.png");
-    this.load.image("playerShip", "../assets/sprites/playerShip.png");
-    this.load.image("enemyShip1", "../assets/sprites/enemyShip1.png");
-    this.load.image("enemyShip2", "../assets/sprites/enemyShip2.png");
-    this.load.image("enemyShip3", "../assets/sprites/enemyShip3.png");
-    this.load.image("enemyLaser", "../assets/sprites/enemyLaser.png");
-    this.load.image("playerLaser", "../assets/sprites/playerLaser.png");
-    this.load.spritesheet("explosion", "../assets/sprites/sprExplosion.png", {
+    this.load.image('bg1', '../assets/sprites/bg1.png');
+    this.load.image('playerShip', '../assets/sprites/playerShip.png');
+    this.load.image('enemyShip1', '../assets/sprites/enemyShip1.png');
+    this.load.image('enemyShip2', '../assets/sprites/enemyShip2.png');
+    this.load.image('enemyShip3', '../assets/sprites/enemyShip3.png');
+    this.load.image('enemyLaser', '../assets/sprites/enemyLaser.png');
+    this.load.image('playerLaser', '../assets/sprites/playerLaser.png');
+    this.load.spritesheet('explosion', '../assets/sprites/sprExplosion.png', {
       frameWidth: 32,
       frameHeight: 32,
     });
 
-    this.load.audio("sndExplode0", "../assets/audio/sndExplode0.wav");
-    this.load.audio("sndExplode1", "../assets/audio/sndExplode1.wav");
-    this.load.audio("sndLaser", "../assets/audio/sndLaser.wav");
+    this.load.audio('sndExplode0', '../assets/audio/sndExplode0.wav');
+    this.load.audio('sndExplode1', '../assets/audio/sndExplode1.wav');
+    this.load.audio('sndLaser', '../assets/audio/sndLaser.wav');
   }
 
   create() {
     this.anims.create({
-      key: "explosion",
-      frames: this.anims.generateFrameNumbers("explosion"),
+      key: 'explosion',
+      frames: this.anims.generateFrameNumbers('explosion'),
       frameRate: 20,
       repeat: 0,
     });
 
     this.sfx = {
       explosions: [
-        this.sound.add("sndExplode0", { volume: 0.5 }),
-        this.sound.add("sndExplode1", { volume: 0.5 }),
+        this.sound.add('sndExplode0', { volume: 0.5 }),
+        this.sound.add('sndExplode1', { volume: 0.5 }),
       ],
-      laser: this.sound.add("sndLaser", { volume: 0.5 }),
+      laser: this.sound.add('sndLaser', { volume: 0.5 }),
     };
 
-    const score = this.add.text(10, 20, "Score:", {
-      fontFamily: "monospace",
+    const score = this.add.text(10, 20, 'Score:', {
+      fontFamily: 'monospace',
       fontSize: 18,
-      fontStyle: "bold",
-      color: "#000000",
-      backgroundColor: "#fed141",
+      fontStyle: 'bold',
+      color: '#000000',
+      backgroundColor: '#fed141',
       padding: 5,
     });
 
@@ -56,12 +56,12 @@ class MainScene extends Phaser.Scene {
       this,
       this.game.config.width * 0.5,
       this.game.config.height * 0.5,
-      "playerShip"
+      'playerShip',
     );
 
     this.cusors = this.input.keyboard.createCursorKeys();
     this.keySpace = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.SPACE
+      Phaser.Input.Keyboard.KeyCodes.SPACE,
     );
 
     this.enemies = this.add.group();
@@ -77,14 +77,14 @@ class MainScene extends Phaser.Scene {
           enemy = new GunShip(
             this,
             Phaser.Math.Between(0, this.game.config.width),
-            0
+            0,
           );
         } else if (Phaser.Math.Between(0, 10) >= 5) {
-          if (this.getEnemiesByType("ChaserShip").length < 5) {
+          if (this.getEnemiesByType('ChaserShip').length < 5) {
             enemy = new ChaserShip(
               this,
               Phaser.Math.Between(0, this.game.config.width),
-              0
+              0,
             );
           }
         }
@@ -112,11 +112,11 @@ class MainScene extends Phaser.Scene {
           window.global.score += 1;
           score.setText(`Score: ${window.global.score}`);
         }
-      }
+      },
     );
 
     this.physics.add.overlap(this.player, this.enemies, (player, enemy) => {
-      if (!player.getData("isDead") && !enemy.getData("isDead")) {
+      if (!player.getData('isDead') && !enemy.getData('isDead')) {
         player.explode(false);
         player.onDestroy();
         enemy.explode(true);
@@ -124,7 +124,7 @@ class MainScene extends Phaser.Scene {
     });
 
     this.physics.add.overlap(this.player, this.enemyLasers, (player, laser) => {
-      if (!player.getData("isDead") && !laser.getData("isDead")) {
+      if (!player.getData('isDead') && !laser.getData('isDead')) {
         player.explode(false);
         player.onDestroy();
         laser.destroy();
@@ -133,13 +133,13 @@ class MainScene extends Phaser.Scene {
 
     this.backgrounds = [];
     for (let i = 0; i < 5; i += 1) {
-      const bg = new ScrollingBackground(this, "bg1", i * 10);
+      const bg = new ScrollingBackground(this, 'bg1', i * 10);
       this.backgrounds.push(bg);
     }
   }
 
   update() {
-    if (!this.player.getData("isDead")) {
+    if (!this.player.getData('isDead')) {
       this.player.update();
       if (this.cusors.up.isDown) {
         this.player.moveUp();
@@ -153,13 +153,13 @@ class MainScene extends Phaser.Scene {
       }
 
       if (this.keySpace.isDown) {
-        this.player.setData("isShooting", true);
+        this.player.setData('isShooting', true);
       } else {
         this.player.setData(
-          "timerShootTick",
-          this.player.getData("timerShootDelay") - 1
+          'timerShootTick',
+          this.player.getData('timerShootDelay') - 1,
         );
-        this.player.setData("isShooting", false);
+        this.player.setData('isShooting', false);
       }
     }
 
@@ -169,10 +169,10 @@ class MainScene extends Phaser.Scene {
       enemy.update();
 
       if (
-        enemy.x < -enemy.displayWidth ||
-        enemy.x > this.game.config.width + enemy.displayWidth ||
-        enemy.y < -enemy.displayHeight * 4 ||
-        enemy.y > this.game.config.height + enemy.displayHeight
+        enemy.x < -enemy.displayWidth
+        || enemy.x > this.game.config.width + enemy.displayWidth
+        || enemy.y < -enemy.displayHeight * 4
+        || enemy.y > this.game.config.height + enemy.displayHeight
       ) {
         if (enemy) {
           if (enemy.onDestroy !== undefined) {
@@ -189,10 +189,10 @@ class MainScene extends Phaser.Scene {
       laser.update();
 
       if (
-        laser.x < -laser.displayWidth ||
-        laser.x > this.game.config.width + laser.displayWidth ||
-        laser.y < -laser.displayHeight * 4 ||
-        laser.y > this.game.config.height + laser.displayHeight
+        laser.x < -laser.displayWidth
+        || laser.x > this.game.config.width + laser.displayWidth
+        || laser.y < -laser.displayHeight * 4
+        || laser.y > this.game.config.height + laser.displayHeight
       ) {
         if (laser) {
           laser.destroy();
@@ -205,10 +205,10 @@ class MainScene extends Phaser.Scene {
       laser.update();
 
       if (
-        laser.x < -laser.displayWidth ||
-        laser.x > this.game.config.width + laser.displayWidth ||
-        laser.y < -laser.displayHeight * 4 ||
-        laser.y > this.game.config.height + laser.displayHeight
+        laser.x < -laser.displayWidth
+        || laser.x > this.game.config.width + laser.displayWidth
+        || laser.y < -laser.displayHeight * 4
+        || laser.y > this.game.config.height + laser.displayHeight
       ) {
         if (laser) {
           laser.destroy();
@@ -225,7 +225,7 @@ class MainScene extends Phaser.Scene {
     const arr = [];
     for (let i = 0; i < this.enemies.getChildren().length; i += 1) {
       const enemy = this.enemies.getChildren()[i];
-      if (enemy.getData("type") === type) {
+      if (enemy.getData('type') === type) {
         arr.push(enemy);
       }
     }

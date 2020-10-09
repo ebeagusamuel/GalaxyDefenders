@@ -1,19 +1,18 @@
-import "regenerator-runtime";
+import 'regenerator-runtime';
 
 const API = (() => {
-  const baseURL =
-    "https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/";
-  const gameId = "56zALG4xwXumPvOu4eKI";
+  const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
+  const gameId = '56zALG4xwXumPvOu4eKI';
 
   const postScore = async () => {
     const data = window.global;
 
     try {
       const response = await fetch(`${baseURL}${gameId}/scores`, {
-        method: "POST",
-        mode: "cors",
+        method: 'POST',
+        mode: 'cors',
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
+          'Content-type': 'application/json; charset=UTF-8',
         },
         body: JSON.stringify(data),
       });
@@ -28,7 +27,7 @@ const API = (() => {
   const getScores = async () => {
     try {
       const response = await fetch(`${baseURL}${gameId}/scores`, {
-        mode: "cors",
+        mode: 'cors',
       });
       const jsonObj = await response.json();
 

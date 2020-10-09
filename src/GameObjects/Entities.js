@@ -1,4 +1,4 @@
-import Phaser from "phaser";
+import Phaser from 'phaser';
 
 class Entity extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, key, type) {
@@ -7,14 +7,14 @@ class Entity extends Phaser.GameObjects.Sprite {
     this.scene = scene;
     this.scene.add.existing(this);
     this.scene.physics.world.enableBody(this, 0);
-    this.setData("type", type);
-    this.setData("isDead", false);
+    this.setData('type', type);
+    this.setData('isDead', false);
   }
 
   explode(canDestroy) {
-    if (!this.getData("isDead")) {
-      this.setTexture("explosion");
-      this.play("explosion");
+    if (!this.getData('isDead')) {
+      this.setTexture('explosion');
+      this.play('explosion');
 
       this.scene.sfx.explosions[
         Phaser.Math.Between(0, this.scene.sfx.explosions.length - 1)
@@ -30,7 +30,7 @@ class Entity extends Phaser.GameObjects.Sprite {
       this.body.setVelocity(0, 0);
 
       this.on(
-        "animationcomplete",
+        'animationcomplete',
         () => {
           if (canDestroy) {
             this.destroy();
@@ -38,10 +38,10 @@ class Entity extends Phaser.GameObjects.Sprite {
             this.setVisible(false);
           }
         },
-        this
+        this,
       );
 
-      this.setData("isDead", true);
+      this.setData('isDead', true);
     }
   }
 }

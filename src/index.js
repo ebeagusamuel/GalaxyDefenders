@@ -1,21 +1,21 @@
-import Phaser from "phaser";
-import MenuScene from "./scenes/MenuScene";
-import Controls from "./scenes/Controls";
-import MainScene from "./scenes/MainScene";
-import GameOverScene from "./scenes/GameOverScene";
+import Phaser from 'phaser';
+import MenuScene from './scenes/MenuScene';
+import Controls from './scenes/Controls';
+import MainScene from './scenes/MainScene';
+import GameOverScene from './scenes/GameOverScene';
 
 const config = {
   type: Phaser.AUTO,
   width: 450,
   height: 600,
-  backgroundColor: "black",
+  backgroundColor: 'black',
   physics: {
-    default: "arcade",
+    default: 'arcade',
     arcade: {
       gravity: { x: 0, y: 0 },
     },
   },
-  parent: "divId",
+  parent: 'divId',
   dom: {
     createContainer: true,
   },
@@ -25,7 +25,7 @@ const config = {
 };
 
 window.global = {
-  user: "",
+  user: '',
   score: 0,
 };
 

@@ -1,22 +1,22 @@
-import Phaser from "phaser";
+import Phaser from 'phaser';
 
 class MenuScene extends Phaser.Scene {
   constructor() {
-    super("MenuScene");
+    super('MenuScene');
   }
 
   preload() {
-    this.load.audio("bgsnd", "../assets/audio/ancientbgm.mp3");
+    this.load.audio('bgsnd', '../assets/audio/ancientbgm.mp3');
     this.load.plugin(
-      "rexinputtextplugin",
-      "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexinputtextplugin.min.js",
-      true
+      'rexinputtextplugin',
+      'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexinputtextplugin.min.js',
+      true,
     );
   }
 
   create() {
     this.sound
-      .add("bgsnd", {
+      .add('bgsnd', {
         loop: true,
         volume: 0.5,
       })
@@ -25,20 +25,20 @@ class MenuScene extends Phaser.Scene {
     this.title = this.add.text(
       this.game.config.width * 0.5,
       100,
-      "Galaxy Defenders",
+      'Galaxy Defenders',
       {
-        fontFamily: "monospace",
+        fontFamily: 'monospace',
         fontSize: 40,
-        fontStyle: "bold",
-        color: "#fed141",
-        align: "center",
-      }
+        fontStyle: 'bold',
+        color: '#fed141',
+        align: 'center',
+      },
     );
     this.title.setOrigin(0.5);
 
     const printText = this.add
-      .text(240, 200, "PlayerName:", {
-        fontSize: "15px",
+      .text(240, 200, 'PlayerName:', {
+        fontSize: '15px',
         fixedWidth: 100,
         fixedHeight: 100,
       })
@@ -46,75 +46,75 @@ class MenuScene extends Phaser.Scene {
 
     const inputText = this.add
       .rexInputText(240, 200, 200, 30, {
-        type: "text",
-        placeholder: "Enter player name",
+        type: 'text',
+        placeholder: 'Enter player name',
         fontSize: 20,
-        color: "#ffffff",
-        borderBottom: "3px solid #fed141",
+        color: '#ffffff',
+        borderBottom: '3px solid #fed141',
       })
       .setOrigin(0.5)
-      .on("textchange", () => {
+      .on('textchange', () => {
         printText.text = inputText.text;
       });
 
     printText.text = inputText.text;
 
-    this.submitButton = this.add.text(200, 230, "Submit", {
-      fontFamily: "monospace",
+    this.submitButton = this.add.text(200, 230, 'Submit', {
+      fontFamily: 'monospace',
       fontSize: 18,
-      fontStyle: "bold",
-      color: "#000000",
-      backgroundColor: "#fed141",
+      fontStyle: 'bold',
+      color: '#000000',
+      backgroundColor: '#fed141',
       padding: 5,
     });
     this.submitButton.setInteractive();
-    this.submitButton.on("pointerup", () => {
+    this.submitButton.on('pointerup', () => {
       if (printText.text.length > 0) {
-        inputText.text = "";
+        inputText.text = '';
         window.global.user = printText.text;
       }
     });
 
-    this.playButton = this.add.text(210, 280, "Play", {
-      fontFamily: "monospace",
+    this.playButton = this.add.text(210, 280, 'Play', {
+      fontFamily: 'monospace',
       fontSize: 18,
-      fontStyle: "bold",
-      color: "#000000",
-      backgroundColor: "#fed141",
+      fontStyle: 'bold',
+      color: '#000000',
+      backgroundColor: '#fed141',
       padding: 5,
     });
     this.playButton.setInteractive();
     this.playButton.on(
-      "pointerup",
+      'pointerup',
       () => {
-        this.scene.switch("MainScene");
+        this.scene.switch('MainScene');
       },
-      this
+      this,
     );
 
-    this.controlBtn = this.add.text(190, 330, "Controls", {
-      fontFamily: "monospace",
+    this.controlBtn = this.add.text(190, 330, 'Controls', {
+      fontFamily: 'monospace',
       fontSize: 18,
-      fontStyle: "bold",
-      color: "#000000",
-      backgroundColor: "#fed141",
+      fontStyle: 'bold',
+      color: '#000000',
+      backgroundColor: '#fed141',
       padding: 5,
     });
     this.controlBtn.setInteractive();
     this.controlBtn.on(
-      "pointerup",
+      'pointerup',
       () => {
-        this.scene.switch("Controls");
+        this.scene.switch('Controls');
       },
-      this
+      this,
     );
 
-    this.add.text(100, this.game.config.height - 30, "Made By Samuel Ebeagu", {
-      fontFamily: "monospace",
+    this.add.text(100, this.game.config.height - 30, 'Made By Samuel Ebeagu', {
+      fontFamily: 'monospace',
       fontSize: 20,
-      fontStyle: "bold",
-      color: "#fed141",
-      align: "center",
+      fontStyle: 'bold',
+      color: '#fed141',
+      align: 'center',
     });
   }
 }

@@ -1,27 +1,27 @@
-import Phaser from "phaser";
-import Entity from "./Entities";
+import Phaser from 'phaser';
+import Entity from './Entities';
 
 class ChaserShip extends Entity {
   constructor(scene, x, y) {
-    super(scene, x, y, "enemyShip3", "ChaserShip");
+    super(scene, x, y, 'enemyShip3', 'ChaserShip');
 
     this.body.velocity.y = Phaser.Math.Between(50, 100);
 
     this.states = {
-      MOVE_DOWN: "MOVE_DOWN",
-      CHASE: "CHASE",
+      MOVE_DOWN: 'MOVE_DOWN',
+      CHASE: 'CHASE',
     };
     this.state = this.states.MOVE_DOWN;
   }
 
   update() {
-    if (!this.getData("isDead") && this.scene.player) {
+    if (!this.getData('isDead') && this.scene.player) {
       if (
         Phaser.Math.Distance.Between(
           this.x,
           this.y,
           this.scene.player.x,
-          this.scene.player.y
+          this.scene.player.y,
         ) < 320
       ) {
         this.state = this.states.CHASE;

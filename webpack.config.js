@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin')
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -39,6 +39,6 @@ module.exports = {
         { from: 'src/assets', to: 'assets' },
       ],
     }),
-    new WriteFilePlugin()
+    new WriteFilePlugin(),
   ],
 };
