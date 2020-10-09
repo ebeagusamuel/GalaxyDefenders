@@ -54,7 +54,7 @@ class Player extends Entity {
     this.scene.time.addEvent({ 
       delay: 1000,
       callback: () => {
-        if(window.global.name && window.global.score > 0){
+        if(window.global.name != '' && window.global.score > 0){
           API.postScore()
         }
         this.scene.scene.start("GameOverScene");

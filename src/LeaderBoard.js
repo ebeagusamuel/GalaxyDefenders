@@ -41,7 +41,7 @@ const API = (() => {
     let scoreObj = await getScores();
     let scores = scoreObj.result
     scores.sort((a, b) => b.score - a.score);
-
+    console.log(scores)
     return scores;
   }
 
