@@ -1,3 +1,5 @@
+import 'regenerator-runtime';
+
 const API = (() => {
   const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/'
   const gameId = '56zALG4xwXumPvOu4eKI';
@@ -19,7 +21,7 @@ const API = (() => {
       return jsonObj
 
     } catch (error) {
-      console.error(error)
+      return null
     }
   }
 
@@ -31,7 +33,7 @@ const API = (() => {
       return jsonObj
 
     } catch (error) {
-      console.error(error)
+      return null
     }
   }
 
@@ -43,7 +45,7 @@ const API = (() => {
     return scores;
   }
 
-  return {postScore, topScores}
+  return {postScore, getScores, topScores}
 })()
 
 export default API
