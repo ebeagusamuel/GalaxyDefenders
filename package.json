@@ -7,7 +7,8 @@
     "test": "jest",
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,8 @@
     "jest": "^26.4.2",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "write-file-webpack-plugin": "^4.5.1"
   },
   "dependencies": {
     "regenerator-runtime": "^0.13.7",
