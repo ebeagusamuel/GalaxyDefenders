@@ -38,7 +38,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-> This is a 2D game built using phaser which is a javascript framework for building games. The project had a deadline of 5 days. Each day of the 5 days has a specific milestone which we were to achieve. The game is called Galaxy defenders and the idea behind the game is that aliens are trying to invade our galaxy and we have to defend the galaxy by shootig down the aliens ship. The fight scene is in space.
+> This is a 2D game built using phaser which is a javascript framework for building games. The project had a deadline of 5 days. Each day of the 5 days has a specific milestone which we were to achieve. The game is called Galaxy defenders and the idea behind the game is that aliens are trying to invade our galaxy and we have to defend the galaxy by shooting down the aliens ship. The fight scene is in space.
 
 ![Screenshot from 2020-10-09 14-28-07](https://user-images.githubusercontent.com/57847212/95588769-bd49a300-0a3b-11eb-94f3-9c18fdae1e64.png)
 
@@ -119,9 +119,9 @@ We have 2 different types of enemies
 - The enemy Gunship
 - The enemy Chasership.
 
-The Gunship is the ship with the ability to shoot while the Chasership does not shot but chasers the player ship to clash into it.
+The Gunship is the ship with the ability to shoot while the Chasership does not shot but chases the player ship to clash into it.
 
-Contact between either of the enemy ship and the player ship will destroy both ships, so the player ship should avoid contact with any of the enmy ship while shooting at the enemy ship. 
+Contact between either of the enemy ship and the player ship will destroy both ships, so the player ship should avoid contact with any of the enemy ship while shooting at the enemy ship. 
 
 ## Others Future Features
 
