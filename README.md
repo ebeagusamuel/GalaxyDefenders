@@ -56,15 +56,29 @@ This progam was made using this technologies
 
 ## Design Process
 
-* On day one, I familiarised myself with the phaser framework, went through their material on getting started with phaser, watched and practiced with some tutorials on phaser. After that, I set up the project repository and configured the project to use webpack, es6 and modules.
+> The goal was to create a platform game in which the main character i.e the player cann move around and shoot at the other characters in the game i.e the enemies.
 
-* I spent the second day thinking of how I want the game to be, i.e the story behind the game, how the player will be, if I would have enemies or obstacles. After that I went ahead to gather assets I will be using for the game.
+#### Story and game play
+The idea that came to my head was to create a space shooter game and it wasn't that difficult coming up with the game play since I have watched a couple of movies that involved space battles. So the story line behind the game is that aliens are tring to invade our galaxy and in order to prevent that from happening, that player has to shoot down all the enemy space ship. 
 
-* On the third day, I started building up the project, setting up some scene like the menu scene, background and setting up the configuration for phaser. After that I added my player ship and made it to be able to move.
+#### Assets choice
+I picked most of the assets from opengameart.org, and these includes the player spaceship, the enemy gunship, the enemy chasership, the player laser, the enemy laser, the background and the background music.
 
-* On day four, I added the enemy ship, and also made the enemy ship to be able to fire at the player ship and likewise the player ship to be able to fire at the enemy ship.
+#### Technical Knowhow
+It took me some time to understand Phaser to the point where I could build something with it. The documentation helped a lot as well as the numerious youtube videos and articles about phaser.
 
-* On the last day of the project, I implemented the leaderscore board. For this I had to work with an API which was used for storing the scores of the people that played the game. After the end of the game , I am displaying the players with the highest scores so far.
+#### Development stage
+> Since the goal is set, the design has been made and the assets ready to use, I started the development phase.
+
+> I started by creating the different scenes in my game. This gives me some level of confidence because within the first few hours, I already have a deliverable.
+
+> After that, I picked the scenes one after the other and I preloaded the required assets. I also link the scenes all together according to the game design, so I can move freely from one scene to another.
+
+> Next, I focused on the game scene, as this is the most complicated scene of all. I added logics to render playership, background, enemyship. I also added logics to animate playership, enemyship and to make their movement. Having done these, I added logic to move the player around and to make the player shoot.
+
+> I later added logics to monitor collision between the playership, enemyship, playership laser and enemyship laser. Lastly in the game scene, I added the score mechanism to keep track of each game session's scores.
+
+> A player do not have to enter his/her name before playing the game. If a player did not enter his/her name, the only implication is that their score will not be stored in the game board.
 
 <!-- GETTING STARTED -->
 ## Getting Started
