@@ -11,6 +11,7 @@ const API = (() => {
       const response = await fetch(`${baseURL}${gameId}/scores`, {
         method: 'POST',
         mode: 'cors',
+        cache: 'no-cache',
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
@@ -37,12 +38,17 @@ const API = (() => {
     }
   };
 
-  const topScores = async () => {
-    const scoreObj = await getScores();
-    const scores = scoreObj.result;
-    scores.sort((a, b) => b.score - a.score);
 
-    return scores;
+  const topScores = async () => {
+    try {
+      const scoreObj = await getScores();
+      const scores = scoreObj.result;
+      scores.sort((a, b) => b.score - a.score);
+
+      return scores;
+    } catch (error) {
+      return null;
+    }
   };
 
   return { postScore, getScores, topScores };
